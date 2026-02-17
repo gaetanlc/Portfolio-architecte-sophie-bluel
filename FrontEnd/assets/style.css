@@ -85,15 +85,15 @@ body {
 	justify-content: center;
 	flex-direction: column;
 	padding: 80px;
-	gap: 20px;
+	gap: 30px;
 }
 
 form {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
 	flex-direction: column;
-	gap: 10px;
+	gap: 15px;
 }
 
 form input[type="email"],
@@ -101,7 +101,7 @@ form input[type="password"] {
     width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+	margin-top: -5px;
 }
 
 .filter-btn:hover,
