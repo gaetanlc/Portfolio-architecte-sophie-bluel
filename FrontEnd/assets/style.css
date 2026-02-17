@@ -53,6 +53,63 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+
+.filters {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 50px;
+}
+
+.filter-btn {
+	display: flex;
+	font-size: 20px;
+	border-radius: 20px;
+	color: #1D6154;
+	background-color: white;
+	cursor: pointer;
+	padding: 10px 20px;
+	border: 1px solid #1D6154;
+	font-weight: 400;
+	font-family: 'Syne';
+
+}
+
+.log-in h2 {
+	color: #1D6154;
+}
+
+.log-in {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 80px;
+	gap: 20px;
+}
+
+form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 10px;
+}
+
+form input[type="email"],
+form input[type="password"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: #1D6154;
+    color: white;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
