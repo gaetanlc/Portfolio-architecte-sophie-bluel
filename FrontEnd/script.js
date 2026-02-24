@@ -170,7 +170,42 @@ function setupModal(works, categories) {
         }
     }
 
-    imageInput.addEventListener('change', checkForm)
+    function resetUploadZone() {
+        const uploadZone = document.querySelector('.upload-zone')
+        uploadZone.innerHTML = `
+        <i class="fa-regular fa-image"></i>
+        <label for="work-image">+ Ajouter photo</label>
+        <input type="file" id="work-image" accept="image/*" hidden>
+        <p>jpg, png : 4mo max</p>
+    `
+        const newInput = document.getElementById('work-image')
+        newInput.addEventListener('change', () => handleImageChange(newInput))
+        submitBtn.disabled = true
+        submitBtn.style.backgroundColor = '#a0a0a0'
+    }
+
+    function handleImageChange(input) {
+        const file = input.files[0]
+        if (!file) return
+        const reader = new FileReader()
+        reader.onload = (e) => {
+            const uploadZone = document.querySelector('.upload-zone')
+            uploadZone.innerHTML = `
+            <div style="position: relative; display: inline-block;">
+                <img src="${e.target.result}" alt="prévisualisation" style="max-height: 169px; max-width: 100%; object-fit: contain;">
+                <button type="button" id="remove-image" style="position: absolute; top: -8px; right: -8px; background: black; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center;">✕</button>
+            </div>
+        `
+            document.getElementById('remove-image').addEventListener('click', () => {
+                resetUploadZone()
+            })
+        }
+        reader.readAsDataURL(file)
+        submitBtn.disabled = !(titleInput.value.trim() !== '')
+        submitBtn.style.backgroundColor = submitBtn.disabled ? '#a0a0a0' : '#1D6154'
+    }
+
+    imageInput.addEventListener('change', () => handleImageChange(imageInput))
     titleInput.addEventListener('input', checkForm)
 
     addForm.addEventListener('submit', async (e) => {
@@ -223,6 +258,15 @@ async function init() {
             document.querySelector('#nav-login').innerText = 'logout'
             document.querySelector('.filters').style.display = 'none'
             setupModal(works, categories)
+
+            document.querySelector('#nav-login').addEventListener('click', () => {
+                localStorage.removeItem('token')
+                window.location.reload()
+            })
+        } else {
+            document.querySelector('#nav-login').addEventListener('click', () => {
+                window.location.href = 'login.html'
+            })
         }
 
     } catch (error) {
