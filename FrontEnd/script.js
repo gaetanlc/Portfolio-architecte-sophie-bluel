@@ -257,6 +257,8 @@ async function init() {
             document.querySelector('#mode-edition').style.display = 'block'
             document.querySelector('#nav-login').innerText = 'logout'
             document.querySelector('.filters').style.display = 'none'
+            document.querySelector('#mode-edition').style.display = 'block'
+            document.querySelector('.edit-btn').style.display = 'block'
             setupModal(works, categories)
 
             document.querySelector('#nav-login').addEventListener('click', () => {
